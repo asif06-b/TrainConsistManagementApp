@@ -1,32 +1,14 @@
-public class TrainConsistManagementApp {
+import java.util.Arrays;
 
-    static class InvalidCapacityException extends Exception {
-        InvalidCapacityException(String msg) {
-            super(msg);
-        }
-    }
+public static void sortBogieNames() {
+    String[] bogies = {"Sleeper", "AC", "General", "Luxury"};
 
-    static class Bogie {
-        String name;
-        int capacity;
+    Arrays.sort(bogies);
 
-        Bogie(String name, int capacity) throws InvalidCapacityException {
-            if (capacity <= 0) {
-                throw new InvalidCapacityException("Invalid Capacity");
-            }
-            this.name = name;
-            this.capacity = capacity;
-        }
-    }
+    System.out.println("Sorted Bogie Names:");
+    System.out.println(Arrays.toString(bogies));
+}
 
-    public static void main(String[] args) {
-
-        System.out.println("=== UC14: Exception Handling ===");
-
-        try {
-            Bogie b = new Bogie("Sleeper", -10);
-        } catch (InvalidCapacityException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+void main() {
+    sortBogieNames();
 }
