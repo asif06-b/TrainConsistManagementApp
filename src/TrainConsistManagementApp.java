@@ -23,7 +23,7 @@ public class TrainConsistManagementApp {
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC8 - Filter Passenger Bogies Using Streams");
+        System.out.println("UC10 - Count Total Seats in Train");
         System.out.println("======================================\n");
 
         List<Bogie> bogies = new ArrayList<>();
@@ -31,22 +31,19 @@ public class TrainConsistManagementApp {
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
         bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("General", 90));
+        bogies.add(new Bogie("Sleeper", 70));
 
-        System.out.println("All Bogies:");
+        System.out.println("Bogies in Train:");
         for (Bogie b : bogies) {
             System.out.println(b.getName() + " -> " + b.getCapacity());
         }
 
-        List<Bogie> filtered = bogies.stream()
-                .filter(b -> b.getCapacity() > 60)
-                .collect(Collectors.toList());
+        int total = bogies.stream()
+                .map(Bogie::getCapacity)
+                .reduce(0, Integer::sum);
 
-        System.out.println("\nFiltered Bogies (Capacity > 60):");
-        for (Bogie b : filtered) {
-            System.out.println(b.getName() + " -> " + b.getCapacity());
-        }
+        System.out.println("\nTotal Seating Capacity of Train: " + total);
 
-        System.out.println("\nUC8 filtering completed...");
+        System.out.println("\nUC10 aggregation completed...");
     }
 }
